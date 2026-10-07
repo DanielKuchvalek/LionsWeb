@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIONS miniGYM Booking</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- FullCalendar CSS -->
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <span>📍 LIONS ARÉNA Sport Centra Hostivice | ✉️ lions@lionshandball.cz</span>
+      <a href="index.html" class="gym-booking-btn">➔ ZPĚT NA HLAVNÍ STRÁNKU</a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="index.html" class="logo-text">LIONS <span>HANDBALL</span></a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="nabor.html">LIONS NÁBOR</a></li>
+          <li><a href="tymy.html">LIONS TÝMY</a></li>
+          <li><a href="minigym.html" class="active">MINIGYM BOOKING</a></li>
+          <li><a href="partneri.html">PARTNEŘI</a></li>
+          <li><a href="kontakt.html">KONTAKTY</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section style="padding: 50px 0 80px; background: #f8fafc;">
+    <div class="container">
+      <div class="section-title">
+        <h2>REZERVACE LIONS miniGYM</h2>
+        <p>Nejprve zkontrolujte kalendář obsazenosti, poté vyplňte formulář níže.</p>
+      </div>
+
+      <!-- INTERAKTIVNÍ KALENDÁŘ OBSAZENOSTI -->
+      <div class="form-card" style="margin-bottom: 40px; padding: 20px;">
+        <h3 style="text-align:center; color:#0b1b3d; margin-bottom:15px; font-weight:800;">KALENDÁŘ OBSAZENOSTI</h3>
+        <div id='gymCalendar'></div>
+      </div>
+
+      <div class="form-card">
+        <div class="rules-box">
+          <h4>📋 PRAVIDLA A PROVOZNÍ ŘÁD LIONS miniGYMu:</h4>
+          <ul>
+            <li>Vstup do posilovny je povolen pouze v čisté sálové sportovní obuvi.</li>
+            <li>Každý uživatel je povinen používat ručník na lavičkách a trenažérech.</li>
+            <li>Po skončení tréninku ukliďte všechny činky a kotouče na jejich určená místa.</li>
+            <li>Vypněte osvětlení a zkontrolujte uzamčení prostor při odchodu.</li>
+            <li>Vstup je povolen pouze řádně registrovaným a schváleným členům klubu LIONS.</li>
+          </ul>
+        </div>
+
+        <div id="bookingAlert" style="display:none; padding:15px; border-radius:6px; margin-bottom:25px; font-weight:700; text-align:center; border: 2px solid transparent;"></div>
+
+        <form id="gymBookingForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Jméno a příjmení *</label>
+              <input type="text" name="full_name" required placeholder="Jan Novák">
+            </div>
+            <div class="form-group">
+              <label>Kategorie / Tým *</label>
+              <select name="category" required>
+                <option value="">Vyberte kategorii...</option>
+                <option value="Muži">Muži</option>
+                <option value="Ženy">Ženy</option>
+                <option value="Dorostenci / Dorostenky">Dorost</option>
+                <option value="Trenér / Realizační tým">Trenér / Realizační tým</option>
+                <option value="Patron klubu">Patron klubu</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>E-mailová adresa *</label>
+              <input type="email" name="email" required placeholder="novak@email.cz">
+            </div>
+            <div class="form-group">
+              <label>Telefonní číslo *</label>
+              <input type="tel" name="phone" required placeholder="+420 777 000 000">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Datum rezervace *</label>
+              <input type="date" name="booking_date" required>
+            </div>
+            <div class="form-group" style="display:flex; gap:15px;">
+              <div style="flex:1;">
+                <label>Čas Od *</label>
+                <input type="time" name="time_from" required>
+              </div>
+              <div style="flex:1;">
+                <label>Čas Do *</label>
+                <input type="time" name="time_to" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Poznámka / Účel tréninku</label>
+            <textarea name="notes" rows="3" placeholder="např. individuální silová příprava..."></textarea>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 25px;">
+            <label style="font-weight: 600; font-size: 0.9rem; cursor: pointer; display:flex; align-items:center;">
+              <input type="checkbox" name="rules_agreed" required style="width:20px; height:20px; margin-right:12px;">
+              Souhlasím s pravidly a provozním řádem LIONS miniGYMu.
+            </label>
+          </div>
+
+          <button type="submit" class="btn-submit">ODESLAT REZERVACI A ZKONTROLOVAT</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      &copy; 2026 LIONS Handball Hostivice. Všechna práva vyhrazena.
+    </div>
+  </footer>
+
+  <!-- FullCalendar JS a inicializace -->
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/cs.js'></script>
+  
+  <script>
+    let calendar; // globální proměnná pro překreslení
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('gymCalendar');
+      calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'timeGridWeek',
+        locale: 'cs',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        slotMinTime: '06:00:00',
+        slotMaxTime: '22:00:00',
+        allDaySlot: false,
+        events: 'api/get_gym_bookings.php' // Načítá rezervace z MySQL
+      });
+      calendar.render();
+    });
+
+    document.getElementById('gymBookingForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const alertBox = document.getElementById('bookingAlert');
+      const formData = new FormData(this);
+
+      try {
+        const res = await fetch('api/book_gym.php', { method: 'POST', body: formData });
+        const result = await res.json();
+
+        alertBox.style.display = 'block';
+        if (result.success) {
+          alertBox.style.background = '#dcfce7';
+          alertBox.style.color = '#166534';
+          alertBox.style.borderColor = '#22c55e';
+          alertBox.textContent = result.message;
+          this.reset();
+          calendar.refetchEvents(); // Ihned zaktualizuje kalendář bez refreshe!
+        } else {
+          alertBox.style.background = '#fee2e2';
+          alertBox.style.color = '#991b1b';
+          alertBox.style.borderColor = '#ef4444';
+          alertBox.textContent = result.message;
+        }
+      } catch (err) {
+        alertBox.style.display = 'block';
+        alertBox.style.background = '#fee2e2';
+        alertBox.style.color = '#991b1b';
+        alertBox.textContent = 'Chyba spojení se serverem.';
+      }
+    });
+  </script>
+</body>
+</html>

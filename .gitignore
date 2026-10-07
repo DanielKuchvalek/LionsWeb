@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Data, zálohy a klíče – patří jen na server, ne do gitu
+storage/*
+!storage/.htaccess
+
+# Pracovní a generované soubory
+brag-output/
+node_modules/

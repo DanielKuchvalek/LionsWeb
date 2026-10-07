@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIONS Handball Team Hostivice | Oficiální web</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/cs_CZ/sdk.js#xfbml=1&version=v19.0"></script>
+
+  <!-- Horní lišta s tlačítkem na LIONS miniGYM booking -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <span>📍 LIONS ARÉNA Sport Centra Hostivice | ✉️ lions@lionshandball.cz</span>
+      <a href="minigym.html" class="gym-booking-btn">🏋️ LIONS miniGYM BOOKING</a>
+    </div>
+  </div>
+
+  <!-- Hlavní navigace -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="index.html" class="logo-text">LIONS <span>HANDBALL</span></a>
+      </div>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html" class="active">HOME</a></li>
+          <li><a href="nabor.html">LIONS NÁBOR</a></li>
+          <li class="has-dropdown">
+            <a href="tymy.html">LIONS TÝMY ▾</a>
+            <ul class="dropdown">
+              <li><a href="tymy.html#pripravka">Přípravka Hostivice</a></li>
+              <li><a href="tymy.html#mini">MINIžactvo Hostivice</a></li>
+              <li><a href="tymy.html#mlzaci">Žákyně a Žáci mladší</a></li>
+              <li><a href="tymy.html#stzaci">Žákyně a Žáci starší</a></li>
+              <li><a href="tymy.html#dorost">Dorostenci a Dorostenky</a></li>
+              <li><a href="tymy.html#zeny">ŽENY (1. Liga ČR)</a></li>
+            </ul>
+          </li>
+          <li><a href="#vysledky">ROZPISY & VÝSLEDKY</a></li>
+          <li><a href="#kalendar">KALENDÁŘ</a></li>
+          <li><a href="minigym.html">MINIGYM</a></li>
+          <li><a href="partneri.html">PARTNEŘI</a></li>
+          <li><a href="kontakt.html">KONTAKTY</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero sekce s náborovými videi -->
+  <section id="nabor" class="hero-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>PŘIDEJ SE K LIONS</h2>
+        <p>Nábor chlapců a děvčat do všech mládežnických kategorií</p>
+      </div>
+
+      <div class="videos-grid">
+        <div class="video-card">
+          <div class="badge badge-blue">NÁBOR CHLAPCI</div>
+          <video controls preload="metadata">
+            <source src="https://www.lionshandball.cz/wp-content/uploads/2019/04/LIONS-NABOR-CHLAPCI-2026.mp4" type="video/mp4">
+            Váš prohlížeč nepodporuje přehrávání videa.
+          </video>
+        </div>
+
+        <div class="video-card">
+          <div class="badge badge-red">NÁBOR DĚVČATA</div>
+          <video controls preload="metadata">
+            <source src="https://www.lionshandball.cz/wp-content/uploads/2019/04/LIONS-NABOR-DEVCATA-2026.mp4" type="video/mp4">
+            Váš prohlížeč nepodporuje přehrávání videa.
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sekce zápasů s countdownem -->
+  <section class="matches-section">
+    <div class="container">
+      <div class="section-title light">
+        <h2>NEJBLIŽŠÍ DOMÁCÍ UTKÁNÍ</h2>
+        <p>V LIONS ARÉNĚ SPORT CENTRA HOSTIVICE</p>
+      </div>
+
+      <div class="matches-grid" id="matchesContainer">
+        <p style="text-align: center; color: #94a3b8; width: 100%;">Načítám zápasy z databáze...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rozpisy a výsledky -->
+  <section id="vysledky" class="results-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>ROZPISY A VÝSLEDKY SOUTĚŽÍ</h2>
+      </div>
+
+      <div class="results-columns">
+        <div class="results-col">
+          <h3>🦁 Mužská složka</h3>
+          <ul class="link-list">
+            <li><a href="https://www.handball.cz/" target="_blank">ŽÁCI MLADŠÍ ... SKSH LIGA <span>➔</span></a></li>
+            <li><a href="https://www.handball.cz/" target="_blank">ŽÁCI MLADŠÍ ... PSH PŘEBOR <span>➔</span></a></li>
+            <li><a href="https://www.handball.cz/" target="_blank">ŽÁCI STARŠÍ ... SKSH 1.LIGA <span>➔</span></a></li>
+            <li><a href="https://www.handball.cz/" target="_blank">DOROSTENCI MLADŠÍ ... 1.LIGA <span>➔</span></a></li>
+            <li><a href="https://www.handball.cz/" target="_blank">DOROSTENCI STARŠÍ ... 1.LIGA <span>➔</span></a></li>
+          </ul>
+        </div>
+
+        <div class="results-col">
+          <h3>🦁 Ženská složka</h3>
+          <ul class="link-list">
+            <li><a href="https://www.handball.cz/" target="_blank">ŽÁKYNĚ MLADŠÍ ... SKSH LIGA <span>➔</span></a></li>
+            <li><a href="https://www.handball.cz/" target="_blank">ŽÁKYNĚ STARŠÍ ... SKSH LIGA <span>➔</span></a></li>
+            <li><a href="https://www.handball.cz/" target="_blank">DOROSTENKY MLADŠÍ ... 2.LIGA <span>➔</span></a></li>
+            <li><a href="https://www.handball.cz/" target="_blank">ŽENY ... 1.LIGA ČR <span>➔</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kalendář Sportlyzer -->
+  <section id="kalendar" class="calendar-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>LIONS KALENDÁŘ TRÉNINKŮ A UTKÁNÍ</h2>
+        <p>Sportlyzer Club Calendar</p>
+      </div>
+      <div class="calendar-wrapper">
+        <iframe 
+          src="https://www.sportlyzer.com/calendar/widget/lionshandball" 
+          width="100%" 
+          height="620" 
+          frameborder="0"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Facebook Social Feed -->
+  <section class="social-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>AKTUÁLNĚ Z NAŠEHO FACEBOOKU</h2>
+      </div>
+      <div class="fb-wrapper">
+        <div class="fb-page" 
+             data-href="https://www.facebook.com/lionshandballhostivice" 
+             data-tabs="timeline" 
+             data-width="500" 
+             data-height="700" 
+             data-small-header="false" 
+             data-adapt-container-width="true" 
+             data-hide-cover="false" 
+             data-show-facepile="true">
+          <blockquote cite="https://www.facebook.com/lionshandballhostivice" class="fb-xfbml-parse-ignore">
+            <a href="https://www.facebook.com/lionshandballhostivice">LIONS Handball Team Hostivice</a>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partneři -->
+  <section class="partners-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>PARTNEŘI A SPONZOŘI KLUBU</h2>
+      </div>
+      <div class="partners-grid">
+        <div class="partner-item">Město Hostivice</div>
+        <div class="partner-item">Sport Centrum Hostivice</div>
+        <div class="partner-item">Český svaz házené</div>
+        <div class="partner-item">Středočeský krajský svaz házené</div>
+        <div class="partner-item">Národní sportovní agentura</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Patička -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <h4>LIONS HANDBALL TEAM</h4>
+          <p>Hájecká 1866, 253 01 Hostivice - Břve</p>
+          <p>E-mail: <a href="mailto:lions@lionshandball.cz">lions@lionshandball.cz</a></p>
+        </div>
+        <div class="footer-col">
+          <p><a href="minigym.html">LIONS miniGYM</a> | <a href="kontakt.html">Kontakty & Spolek</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 LIONS Handball Hostivice. Všechna práva vyhrazena.
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

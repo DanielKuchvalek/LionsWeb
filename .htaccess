@@ -1,0 +1,49 @@
+DirectoryIndex index.php
+Options -Indexes
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Staré WordPress adresy médií -> nové umístění
+  # (cesta k webu se zjistí z adresy, aby přesměrování fungovalo v kořeni i v podsložce na každém hostingu)
+  RewriteCond %{REQUEST_URI}::$1 ^(.*?/)(wp-content/uploads/(.*))::\2$
+  RewriteRule ^(wp-content/uploads/.*)$ %1assets/media/%3 [R=301,L]
+
+  # Neveřejné složky a soubory webu LIONS (platí jen pro ně – ostatní weby v podsložkách se nemění)
+  RewriteRule ^(storage|config|lib|templates|pages|_media-originals|_old-prototype)(/|$) - [F,L]
+  RewriteRule ^(README\.md|bootstrap\.php|assets/media/manifest\.json|(admin|api|assets)/.*\.(json|log|sqlite|md))$ - [F,L]
+  RewriteRule (^|/)\.DS_Store$ - [F,L]
+
+  # Vše ostatní, co není soubor nebo složka, obslouží index.php (adresy jako /pripravka/)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.php [L,QSA]
+</IfModule>
+
+# Databáze nikdy ven (soubory .sqlite jsou jen ve storage/, ta je navíc zablokovaná celá)
+<FilesMatch "\.sqlite$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+</FilesMatch>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/png  "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/gif  "access plus 30 days"
+  ExpiresByType video/mp4  "access plus 30 days"
+  ExpiresByType text/css   "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always unset X-Powered-By
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
