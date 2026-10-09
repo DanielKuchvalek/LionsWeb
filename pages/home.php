@@ -1,7 +1,7 @@
 <?php
 $upcomingHome = csh_upcoming_home(max(1, (int) block('home.matches_count')));
-$upcomingAll  = csh_upcoming_all(6);
-$results      = csh_latest_results(8);
+$upcomingAll  = csh_upcoming_all(6, 7);    // všechna utkání na týden dopředu (aspoň 6)
+$results      = csh_latest_results(8, 7);  // všechny výsledky za poslední týden (aspoň 8)
 $hasData      = csh_all_lions_matches() !== [];
 $heroLink     = block('home.hero_link');
 $heroHref     = preg_match('~^https?://~', $heroLink) ? $heroLink : url($heroLink);

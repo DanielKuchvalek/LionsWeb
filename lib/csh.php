@@ -356,21 +356,41 @@ function csh_upcoming_home(int $limit = 6): array
     return array_slice(array_values($list), 0, $limit);
 }
 
-/** Nejbližší utkání všech týmů (doma i venku) */
-function csh_upcoming_all(int $limit = 8): array
+/**
+ * Nejbližší utkání všech týmů (doma i venku).
+ * $days > 0: všechna utkání v příštích $days dnech (celý víkend), aspoň $limit, nejvýš $max.
+ */
+function csh_upcoming_all(int $limit = 8, int $days = 0, int $max = 30): array
 {
     $now = time();
-    $list = array_filter(csh_all_lions_matches(), fn($m) => $m['state'] === 'live'
-        || ($m['state'] === 'upcoming' && $m['ts'] > $now - 2 * 3600));
-    return array_slice(array_values($list), 0, $limit);
+    $list = array_values(array_filter(csh_all_lions_matches(), fn($m) => $m['state'] === 'live'
+        || ($m['state'] === 'upcoming' && $m['ts'] > $now - 2 * 3600)));
+    return csh_window($list, $limit, $days > 0 ? fn($m) => $m['ts'] <= $now + $days * 86400 : null, $max);
 }
 
-/** Poslední výsledky */
-function csh_latest_results(int $limit = 8): array
+/** Poslední výsledky ($days > 0: všechny za posledních $days dní, aspoň $limit, nejvýš $max) */
+function csh_latest_results(int $limit = 8, int $days = 0, int $max = 30): array
 {
+    $since = time() - $days * 86400;
     $list = array_filter(csh_all_lions_matches(), fn($m) => $m['state'] === 'finished' && $m['home_score'] !== null);
     $list = array_reverse(array_values($list));
-    return array_slice($list, 0, $limit);
+    return csh_window($list, $limit, $days > 0 ? fn($m) => $m['ts'] >= $since : null, $max);
+}
+
+/** Prvních $limit položek + všechny další, které splní $inWindow (seznam je seřazený), nejvýš $max */
+function csh_window(array $list, int $limit, ?callable $inWindow, int $max): array
+{
+    if ($inWindow === null) {
+        return array_slice($list, 0, $limit);
+    }
+    $out = [];
+    foreach ($list as $i => $m) {
+        if (count($out) >= $max || ($i >= $limit && !$inWindow($m))) {
+            break;
+        }
+        $out[] = $m;
+    }
+    return $out;
 }
 
 function csh_any_live(array $matches): bool
